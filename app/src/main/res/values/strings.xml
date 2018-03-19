@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ممكن</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tvName">أسم المستخدم</string>
+    <string name="tvPass">كلمة السر</string>
+    <string name="tvCenterID">رقم المركز</string>
+    <string name="btnLogin">دخول</string>
+    <string name="etNameHint">أدخل أسم المستخدم</string>
+    <string name="etPassHint">أدخل كلمة السر</string>
+    <string name="etCenterIDHint">أدخل رقم المركز</string>
+    <string name="invalidUserName">برجاء إدخال أسم المستخدم</string>
+    <string name="invalidPassword">برجاء إدخال كلمة السر</string>
+    <string name="invalidCenterID">برجاء إدخال رقم المركز</string>
+7</resources>
