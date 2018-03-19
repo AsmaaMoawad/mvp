@@ -6,6 +6,7 @@ package com.example.asmaa.mvp_momken2.Presenter;
 
 public interface LoginPresenterInterface {
 
-    public void onSuccessLogin(String us ,String b , int d );
-    public void onFailedLogin();
+    void onSuccessLogin();
+    void onFailedLogin();
+    void  LoginUser();
 }

@@ -11,4 +11,6 @@
     <string name="invalidUserName">برجاء إدخال أسم المستخدم</string>
     <string name="invalidPassword">برجاء إدخال كلمة السر</string>
     <string name="invalidCenterID">برجاء إدخال رقم المركز</string>
-7</resources>
+    <string name="textview">TextView</string>
+    7
+</resources>

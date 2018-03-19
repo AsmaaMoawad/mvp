@@ -9,11 +9,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public  class LoginModel {
-    LoginPresenterInterface loginPresenterInterface ;
 
-    public LoginModel(LoginPresenterInterface loginPresenterInterface) {
-        this.loginPresenterInterface = loginPresenterInterface;
-    }
 
     public String getCentername() {
         return centername;

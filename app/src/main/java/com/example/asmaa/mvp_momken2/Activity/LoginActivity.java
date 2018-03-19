@@ -1,5 +1,6 @@
 package com.example.asmaa.mvp_momken2.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,16 +20,17 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
-    String mUsername , mCenterId , mPassword;
-    LoginPresenter presenter;
+    String           mUsername , mCenterId , mPassword;
+    LoginPresenter   LoginPresenter;
+
 
 
 
 
       @BindView(R.id.login_progress)             ProgressBar progressBar;
-      @BindView(R.id.etName)                     EditText username;
-      @BindView(R.id.etPass)                     EditText password;
-      @BindView(R.id.etCenterID)                 EditText cenID;
+      @BindView(R.id.etName)                     EditText    et_mUsername;
+      @BindView(R.id.etPass)                     EditText    et_mPassword;
+      @BindView(R.id.etCenterID)                 EditText    et_mCenterId;
 
 
 
@@ -52,21 +54,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setUsernameError() {
-        username.setError(getString(R.string.invalidUserName));
+        et_mUsername.setError(getString(R.string.invalidUserName));
 
 
     }
 
     @Override
     public void setPasworsdError() {
-        password.setError(getString(R.string.invalidPassword));
+        et_mPassword.setError(getString(R.string.invalidPassword));
 
     }
 
 
     @Override
     public void setCentidError() {
-        cenID.setError(getString(R.string.invalidCenterID));
+        et_mCenterId.setError(getString(R.string.invalidCenterID));
 
     }
 
@@ -74,12 +76,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
     @Override
-    public void OnSuccess(String us , String b ,int d) {
-        Toast.makeText(this,"SuccessLogin"+ us +" "+ b +" "+ String.valueOf(d),Toast.LENGTH_SHORT).show();
+    public void OnSuccessLogin() {
+
+        Intent intent= new Intent(this,Evoucher_centers_DateActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
-    public void OnFail() {
+    public void OnFailLogin() {
         Toast.makeText(this,"FailLogin",Toast.LENGTH_SHORT).show();
 
 
@@ -88,16 +93,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @OnClick(R.id.btnLogin)
     public void login(){
-        mUsername=username.getText().toString();
 
-        mPassword=password.getText().toString();
+        mUsername = et_mUsername.getText().toString();
 
-        mCenterId=cenID.getText().toString();
+        mPassword = et_mPassword.getText().toString();
 
-        presenter = new LoginPresenter(this,mUsername,mPassword,mCenterId);
+        mCenterId = et_mCenterId.getText().toString();
 
+        LoginPresenter = new LoginPresenter(this,mUsername,mPassword,mCenterId,this);
+        LoginPresenter.LoginUser();
 
-        presenter.LoginUser();
 
     }
 

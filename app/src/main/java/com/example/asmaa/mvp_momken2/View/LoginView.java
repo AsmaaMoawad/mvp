@@ -18,11 +18,11 @@ public interface LoginView {
 
     void setUsernameError();
     void setPasworsdError();
-    void  setCentidError();
+    void setCentidError();
 
 
-    void OnSuccess(String us ,String p , int d);
-    void OnFail();
+    void OnSuccessLogin();
+    void OnFailLogin();
 
 
 

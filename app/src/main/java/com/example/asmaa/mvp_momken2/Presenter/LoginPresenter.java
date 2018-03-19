@@ -1,10 +1,12 @@
 package com.example.asmaa.mvp_momken2.Presenter;
 
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 
 
-import com.example.asmaa.mvp_momken2.Model.LoginModel;
-import com.example.asmaa.mvp_momken2.Service.AllServices;
+import com.example.asmaa.mvp_momken2.Activity.Evoucher_centers_DateActivity;
+import com.example.asmaa.mvp_momken2.Model.DataManager;
+import com.example.asmaa.mvp_momken2.Service.RetrofitService;
 import com.example.asmaa.mvp_momken2.View.LoginView;
 
 
@@ -15,25 +17,26 @@ import com.example.asmaa.mvp_momken2.View.LoginView;
 public class LoginPresenter  implements  LoginPresenterInterface {
 
 
-    LoginModel loginModel ;
+    Context         mContext ;
 
-    LoginView        view;
+    LoginView        loginView;
     String           mUsername , mPassword ,mCenterId;
-    AllServices      allServices;
+    DataManager     dataManager;
 
-    public LoginPresenter(LoginView view, String mUsername, String mPassword, String mCenterId) {
-        this.view = view;
+    public LoginPresenter(LoginView view, String mUsername, String mPassword, String mCenterId,Context mContext ) {
+        this.loginView = view;
         this.mUsername = mUsername;
         this.mPassword = mPassword;
         this.mCenterId = mCenterId;
+        this.mContext=mContext;
 
     }
 
 
     public boolean CheckUsername() {
         if (mUsername.isEmpty()) {
-            view.setUsernameError();
-            view.hideProgress();
+            loginView.setUsernameError();
+            loginView.hideProgress();
             return false;
         }
 
@@ -43,8 +46,8 @@ public class LoginPresenter  implements  LoginPresenterInterface {
 
     public boolean CheckPassword() {
         if (mPassword.isEmpty()) {
-            view.setPasworsdError();
-            view.hideProgress();
+            loginView.setPasworsdError();
+            loginView.hideProgress();
             return false;
         }
 
@@ -55,35 +58,37 @@ public class LoginPresenter  implements  LoginPresenterInterface {
 
     public boolean CheckCenID() {
         if (mCenterId.isEmpty()) {
-            view.setCentidError();
-            view.hideProgress();
+            loginView.setCentidError();
+            loginView.hideProgress();
             return false;
         }
 
         return true;
     }
 
-
+  @Override
     public void LoginUser() {
-        view.showProgress();
+        loginView.showProgress();
 
         if ((CheckCenID()) & (CheckPassword()) & (CheckUsername())) {
-            allServices   = new AllServices( this);
-            allServices.Login(mUsername,mPassword,mCenterId);
+
+            dataManager = new DataManager(this);
+            dataManager.Login(mUsername,mPassword,mCenterId);
+
 
         }
     }
 
 
 
-    public void onSuccessLogin(String us,String b, int d)
+    public void onSuccessLogin()
     {
 
 
-        loginModel=new LoginModel(this);
-        loginModel.setUserName(us);
-        view.OnSuccess(us,b,d);
-        view.hideProgress();
+
+        loginView.OnSuccessLogin();
+        loginView.hideProgress();
+
 
 
     }
@@ -91,8 +96,8 @@ public class LoginPresenter  implements  LoginPresenterInterface {
 
 
     public void onFailedLogin(){
-        view.OnFail();
-        view.hideProgress();
+        loginView.OnFailLogin();
+        loginView.hideProgress();
 
 
     }

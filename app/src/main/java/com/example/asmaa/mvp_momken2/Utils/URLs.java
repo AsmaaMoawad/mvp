@@ -5,6 +5,6 @@ package com.example.asmaa.mvp_momken2.Utils;
  */
 
 public class URLs {
-    public static String ServerUrl="http://momkn.org:9090/MomknServices/";
+    public static String ServerUrl="http://momkn.org:9090/apitest/api/";
 
 }
